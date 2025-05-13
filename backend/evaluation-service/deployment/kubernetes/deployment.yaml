@@ -1,0 +1,140 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evaluation-service
+  labels:
+    app: evaluation-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: evaluation-service
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: evaluation-service
+    spec:
+      containers:
+      - name: evaluation-service
+        image: linghu/evaluation-service:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8083
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: evaluation-service-config
+              key: database.url
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: username
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: password
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "0.5"
+            memory: "512Mi"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: 8083
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: 8083
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 3
+        volumeMounts:
+        - name: app-config
+          mountPath: /app/config
+      volumes:
+      - name: app-config
+        configMap:
+          name: evaluation-service-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: evaluation-service
+spec:
+  selector:
+    app: evaluation-service
+  ports:
+  - port: 8083
+    targetPort: 8083
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: evaluation-service-config
+data:
+  database.url: "jdbc:mysql://mysql-service:3306/evaluation_db?useUnicode=true&characterEncoding=utf8&useSSL=false"
+  application.properties: |
+    # 应用配置
+    spring.application.name=evaluation-service
+    server.port=8083
+    
+    # 日志级别
+    logging.level.org.example.evaluation=INFO
+    
+    # JPA配置
+    spring.jpa.hibernate.ddl-auto=validate
+    spring.jpa.show-sql=false
+    spring.jpa.open-in-view=false
+    
+    # API文档配置
+    springdoc.api-docs.path=/api-docs
+    springdoc.swagger-ui.path=/swagger-ui.html
+    
+    # 服务发现设置
+    eureka.instance.prefer-ip-address=true
+    
+    # Actuator配置
+    management.endpoints.web.exposure.include=health,info
+    management.endpoint.health.show-details=when_authorized
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: evaluation-service-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: evaluation-service
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
