@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a058a4a2-e4c6-4893-ad66-c8dbfa270aee" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/common/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/config/JwtConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/config/OpenAPIConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/constants/SystemConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/dto/PageResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/dto/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/exception/BaseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/exception/BusinessException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/exception/DiscussionException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/exception/ExperimentException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/exception/UserException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/security/JwtAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/security/JwtTokenUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/security/SecurityUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/utils/StringUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/web/PageResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/src/main/java/org/example/backend/common/web/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/domain/Discussion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/domain/Discussion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/domain/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/domain/UserRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/dto/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/repository/DiscussionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/repository/DiscussionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/service/UserDomainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/service/UserDomainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/service/impl/DiscussionDomainServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/service/impl/DiscussionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/service/impl/EvaluationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/service/impl/ExperimentServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/core/src/main/java/org/example/backend/core/service/impl/UserDomainServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/discussion-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/discussion-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/discussion-service/src/main/java/org/example/discussion/controller/DiscussionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/discussion-service/src/main/java/org/example/discussion/controller/DiscussionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/discussion-service/src/main/java/org/example/discussion/dto/DiscussionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/discussion-service/src/main/java/org/example/discussion/dto/DiscussionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/discussion-service/src/main/java/org/example/discussion/service/DiscussionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/discussion-service/src/main/java/org/example/discussion/service/DiscussionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/discussion-service/src/main/java/org/example/discussion/service/impl/DiscussionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/discussion-service/src/main/java/org/example/discussion/service/impl/DiscussionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/dto/UserRegistrationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/dto/UserRegistrationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/security/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/security/JwtRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/user-service/src/main/java/org/example/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/user-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../软件详细设计说明书.md" beforeDir="false" afterPath="$PROJECT_DIR$/../软件详细设计说明书.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KeYan-clone&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KeYan-clone/softengineer.git&quot;,
+    &quot;accountId&quot;: &quot;4796469e-578c-41cb-b188-f5c6b022edbd&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2x56vaxrPLtT3tUwSZlAuBJ6IZX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/ProgramCodeContext/VsCode/softengineer/linghuzhiyan",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="MyBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="linghuzhiyan" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.mybackend.MyBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19416.15" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19416.15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a058a4a2-e4c6-4893-ad66-c8dbfa270aee" name="Changes" comment="" />
+      <created>1747215818166</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747215818166</updated>
+      <workItem from="1747215819183" duration="571000" />
+      <workItem from="1747219846664" duration="2913000" />
+      <workItem from="1747224922272" duration="4000" />
+      <workItem from="1747224948737" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
