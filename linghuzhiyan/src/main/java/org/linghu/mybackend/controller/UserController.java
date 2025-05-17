@@ -37,7 +37,9 @@ public class UserController {
     public Result<UserDTO> register(@Valid @RequestBody UserRegistrationDTO registrationDTO) {
         UserDTO userDTO = userService.registerUser(registrationDTO);
         return Result.success(userDTO);
-    }    @PostMapping("/login")
+    }
+
+    @PostMapping("/login")
     @Operation(summary = "用户登录", description = "用户以指定身份登录并获取令牌，可选择指定角色进行身份验证")
     public Result<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO) {
         LoginResponseDTO response = userService.login(loginRequestDTO);
@@ -49,18 +51,20 @@ public class UserController {
     public Result<UserDTO> getProfile(@AuthenticationPrincipal UserDetails userDetails) {
         UserDTO userDTO = userService.getUserByUsername(userDetails.getUsername());
         return Result.success(userDTO);
-    }    @PutMapping("/profile")
+    }
+
+    @PutMapping("/profile")
     @Operation(summary = "更新个人资料", description = "更新当前登录用户的个人资料，只允许修改头像和个人信息")
     public Result<UserDTO> updateProfile(@AuthenticationPrincipal UserDetails userDetails,
-                                       @Valid @RequestBody ProfileUpdateDTO profileUpdateDTO) {
+            @Valid @RequestBody ProfileUpdateDTO profileUpdateDTO) {
         return Result.success(userService.updateUserProfile(userDetails.getUsername(), profileUpdateDTO));
     }
 
     @PutMapping("/password")
     @Operation(summary = "修改密码", description = "修改当前登录用户的密码")
     public Result<Void> changePassword(@AuthenticationPrincipal UserDetails userDetails,
-                                     @RequestParam String oldPassword,
-                                     @RequestParam String newPassword) {
+            @RequestParam String oldPassword,
+            @RequestParam String newPassword) {
         userService.changePassword(userDetails.getUsername(), oldPassword, newPassword);
         return Result.success();
     }
@@ -77,15 +81,15 @@ public class UserController {
     @Operation(summary = "分页查询用户", description = "分页查询用户列表")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER','ROLE_ASSISTANT')")
     public Result<PageResult<UserDTO>> listUsers(@RequestParam(defaultValue = "1") int pageNum,
-                                                 @RequestParam(defaultValue = "10") int pageSize) {
+            @RequestParam(defaultValue = "10") int pageSize) {
         Page<UserDTO> page = userService.listUsers(pageNum, pageSize);
-        
+
         PageResult<UserDTO> pageResult = new PageResult<>();
         pageResult.setList(page.getContent());
         pageResult.setTotal(page.getTotalElements());
         pageResult.setPageNum(pageNum);
         pageResult.setPageSize(pageSize);
-        
+
         return Result.success(pageResult);
     }
 }

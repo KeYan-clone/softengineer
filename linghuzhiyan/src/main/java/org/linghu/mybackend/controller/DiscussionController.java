@@ -3,6 +3,10 @@ package org.linghu.mybackend.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.linghu.mybackend.dto.DiscussionRequestDTO;
 import org.linghu.mybackend.dto.DiscussionResponseDTO;
 import org.linghu.mybackend.dto.PriorityRequestDTO;
@@ -20,10 +24,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Tag(name = "Discussion Controller", description = "讨论模块相关接口")
 public class DiscussionController {
-    
+
     private final DiscussionService discussionService;
     private final UserService userService;
-    
+
     @PostMapping
     @Operation(summary = "创建讨论", description = "创建一个新的讨论主题")
     public ResponseEntity<DiscussionResponseDTO> createDiscussion(@RequestBody DiscussionRequestDTO requestDTO) {
@@ -31,7 +35,7 @@ public class DiscussionController {
         DiscussionResponseDTO responseDTO = discussionService.createDiscussion(requestDTO, userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
-    
+
     @GetMapping
     @Operation(summary = "获取讨论列表", description = "分页获取讨论列表，支持多种过滤和排序")
     public ResponseEntity<Page<DiscussionResponseDTO>> getDiscussions(
@@ -44,22 +48,22 @@ public class DiscussionController {
             @RequestParam(required = false, defaultValue = "desc") String order,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        
+
         String currentUserId = null;
         try {
             currentUserId = userService.getCurrentUserId();
         } catch (Exception e) {
             // 未登录用户不影响浏览讨论
         }
-        
+
         String[] tagArray = tags != null ? tags.split(",") : null;
-        
+
         Page<DiscussionResponseDTO> discussions = discussionService.getDiscussions(
                 tagArray, experimentId, userId, status, keyword, sortBy, order, page, size, currentUserId);
-        
+
         return ResponseEntity.ok(discussions);
     }
-    
+
     @GetMapping("/{id}")
     @Operation(summary = "获取讨论详情", description = "根据ID获取讨论详情")
     public ResponseEntity<DiscussionResponseDTO> getDiscussionById(@PathVariable String id) {
@@ -69,54 +73,58 @@ public class DiscussionController {
         } catch (Exception e) {
             // 未登录用户不影响浏览讨论
         }
-        
+
         DiscussionResponseDTO discussion = discussionService.getDiscussionById(id, currentUserId);
         return ResponseEntity.ok(discussion);
     }
-    
+
     @PutMapping("/{id}")
     @Operation(summary = "更新讨论", description = "更新讨论内容")
     public ResponseEntity<DiscussionResponseDTO> updateDiscussion(
             @PathVariable String id,
             @RequestBody DiscussionRequestDTO requestDTO) {
-        
+
         String userId = userService.getCurrentUserId();
         DiscussionResponseDTO updatedDiscussion = discussionService.updateDiscussion(id, requestDTO, userId);
         return ResponseEntity.ok(updatedDiscussion);
     }
-    
+
     @DeleteMapping("/{id}")
     @Operation(summary = "删除讨论", description = "删除指定ID的讨论")
-    public ResponseEntity<Void> deleteDiscussion(@PathVariable String id) {
+    public ResponseEntity<Map<String, Boolean>> deleteDiscussion(@PathVariable String id) {
         String userId = userService.getCurrentUserId();
-        discussionService.deleteDiscussion(id, userId);
-        return ResponseEntity.noContent().build();
+        boolean deleted = discussionService.deleteDiscussion(id, userId);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("success", deleted);
+
+        return ResponseEntity.ok(response);
     }
-    
+
     @PutMapping("/{id}/review")
     @Operation(summary = "审核讨论", description = "审核讨论内容")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER','ROLE_ASSISTANT')")
     public ResponseEntity<DiscussionResponseDTO> reviewDiscussion(
             @PathVariable String id,
             @RequestBody ReviewRequestDTO requestDTO) {
-        
+
         String reviewerId = userService.getCurrentUserId();
         DiscussionResponseDTO reviewedDiscussion = discussionService.reviewDiscussion(id, requestDTO, reviewerId);
         return ResponseEntity.ok(reviewedDiscussion);
     }
-    
+
     @PutMapping("/{id}/priority")
     @Operation(summary = "设置讨论优先级", description = "设置讨论的优先级(置顶)")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER','ROLE_ASSISTANT')")
+
     public ResponseEntity<DiscussionResponseDTO> updatePriority(
             @PathVariable String id,
             @RequestBody PriorityRequestDTO requestDTO) {
-        
+
         String userId = userService.getCurrentUserId();
         DiscussionResponseDTO updatedDiscussion = discussionService.updatePriority(id, requestDTO, userId);
         return ResponseEntity.ok(updatedDiscussion);
     }
-    
+
     @PostMapping("/{id}/like")
     @Operation(summary = "点赞/取消点赞讨论", description = "对讨论进行点赞或取消点赞")
     public ResponseEntity<DiscussionResponseDTO> toggleLike(@PathVariable String id) {

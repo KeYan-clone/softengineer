@@ -173,7 +173,7 @@ public class DiscussionServiceImpl implements DiscussionService {
     }
     
     @Override
-    public void deleteDiscussion(String id, String userId) {
+    public boolean deleteDiscussion(String id, String userId) {
         Discussion discussion = discussionRepository.findByIdAndNotDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Discussion not found with id: " + id));
         
@@ -186,6 +186,7 @@ public class DiscussionServiceImpl implements DiscussionService {
         discussion.setDeleted(true);
         discussion.setUpdateTime(LocalDateTime.now());
         discussionRepository.save(discussion);
+        return true;
     }
     
     @Override

@@ -330,11 +330,11 @@ public class UserServiceImpl implements UserService {
             "anonymousUser".equals(authentication.getPrincipal())) {
             throw new IllegalStateException("User not authenticated");
         }
-        return authentication.getName(); // 假设用户名就是用户ID
+        return authentication.getName();
     }
     
     @Override
     public UserDTO getUserInfo(String userId) {
-        return getUserById(userId);
+        return getUserByUsername(userId);
     }
 }

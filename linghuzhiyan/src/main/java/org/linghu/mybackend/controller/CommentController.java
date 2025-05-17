@@ -11,6 +11,7 @@ import org.linghu.mybackend.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -75,6 +76,7 @@ public class CommentController {
     
     @DeleteMapping("/api/comments/{commentId}")
     @Operation(summary = "删除评论", description = "删除指定ID的评论")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER','ROLE_ASSISTANT')")
     public ResponseEntity<Void> deleteComment(@PathVariable String commentId) {
         String userId = userService.getCurrentUserId();
         commentService.deleteComment(commentId, userId);
